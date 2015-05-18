@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:s="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+ 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	http://www.springframework.org/schema/security
+    http://www.springframework.org/schema/security/spring-security.xsd">
+
+
+	<context:property-placeholder location="classpath:config/sl.properties" />
+	<context:component-scan base-package="com.neil.controller" />
+	<context:component-scan base-package="com.neil.dao" />
+
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<mvc:annotation-driven />
+	<tx:annotation-driven />
+	<mvc:default-servlet-handler />
+
+	<!--enable @preauthorize and @postauthorize -->
+	<s:global-method-security
+		pre-post-annotations="enabled" />
+
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop><!-- validate | update 
+					| create | create-drop -->
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+			</props>
+		</property>
+		<property name="packagesToScan">
+			<list>
+				<value>com.neil.object</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${DB.DRIVER}" />
+		<property name="url" value="${DB.CONN}" />
+		<property name="username" value="${DB.USERNAME}" />
+		<property name="password" value="${DB.PASSWORD}" />
+		<property name="validationQuery" value="${DB.validationQuery}" />
+		<property name="testOnBorrow" value="${DB.testOnBorrow}" />
+		<property name="initialSize" value="${DB.initialSize}" />
+		<property name="maxActive" value="${DB.maxActive}" />
+		<property name="maxIdle" value="${DB.maxIdle}" />
+	</bean>
+	<bean class="java.lang.Integer" name="macSessionDurationInMinutes">
+		<constructor-arg value="${MAC.SESSION.DURATION.IN.MINUTES}" />
+	</bean>
+
+	<s:http>
+		<s:intercept-url pattern="/home**" access="hasRole('STUDENT')" />
+		<s:intercept-url pattern="/tables**" access="hasRole('STUDENT')" />
+		<s:form-login login-page='/login.neil'
+			default-target-url="/home.neil" always-use-default-target='true' />
+		<s:csrf disabled="true" />
+		<s:logout />
+	</s:http>
+	
+	<bean id="customAuthenticationProvider"
+		class="com.neil.spring.CustomAuthenticationProvider">
+	</bean>
+	<s:authentication-manager>
+		<s:authentication-provider>
+			<s:jdbc-user-service data-source-ref="dataSource"
+				authorities-by-username-query="select username,ROLE from user_roles where username=?"
+				users-by-username-query="select username,password,enabled from users where username=?" />
+		</s:authentication-provider>
+		<s:authentication-provider ref="customAuthenticationProvider"/>
+	</s:authentication-manager>
+	<!-- <s:authentication-manager> <s:authentication-provider> <s:user-service> 
+		<s:user name="jimi" password="jimispassword" authorities="ROLE_USER, ROLE_ADMIN" 
+		/> <s:user name="bob" password="bobspassword" authorities="ROLE_USER" /> 
+		</s:user-service> </s:authentication-provider> </s:authentication-manager> -->
+</beans>
