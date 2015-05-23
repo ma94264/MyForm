@@ -24,7 +24,12 @@
 	<mvc:annotation-driven />
 	<tx:annotation-driven />
 	<mvc:default-servlet-handler />
-
+	<!-- 
+		Enable serving of classpath with Spring 3 resource serving mechanism. For example:
+		GET /webflow-showcase/resources/styles/blueprint/print.css
+	-->
+	<mvc:resources mapping="/resources/**" location="/, classpath:/META-INF/web-resources/" />
+	
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/" />

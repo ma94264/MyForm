@@ -15,7 +15,7 @@ http://www.springframework.org/schema/beans/spring-beans.xsd">
 	</webflow:flow-executor>
 	
 	<!-- The registry of executable flow definitions -->
-	<webflow:flow-registry id="flowRegistry" base-path="/WEB-INF/flows">
+	<webflow:flow-registry id="flowRegistry" flow-builder-services="flowBuilderServices" base-path="/WEB-INF/flows">
 		<webflow:flow-location-pattern value="/**/*-flow.xml" />
 	</webflow:flow-registry>
 
@@ -30,5 +30,34 @@ http://www.springframework.org/schema/beans/spring-beans.xsd">
 	<!-- Dispatches requests mapped to flows to FlowHandler implementations -->
 	<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter">
 		<property name="flowExecutor" ref="flowExecutor"/>
+	</bean>
+	
+	<!-- Resolves logical view names returned by Controllers to Tiles; a view name to resolve is treated as the name of a tiles definition -->
+	<bean id="tilesViewResolver"  
+        class="org.springframework.web.servlet.view.UrlBasedViewResolver">  
+        <property name="viewClass">  
+            <value>  
+                org.springframework.web.servlet.view.tiles3.TilesView  
+            </value>  
+        </property>  
+    </bean>  
+
+	<!-- Configures the Tiles layout system -->
+	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/**/views.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Plugs in a custom creator for Web Flow views -->
+	<webflow:flow-builder-services id="flowBuilderServices" view-factory-creator="mvcViewFactoryCreator" 
+		development="true"/>
+
+	<!-- Configures Web Flow to use Tiles to create views for rendering; Tiles allows for applying consistent layouts to your views -->
+	<bean id="mvcViewFactoryCreator" class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator"> 
+		<property name="viewResolvers" ref="tilesViewResolver"/>
+		<property name="useSpringBeanBinding" value="true" />
 	</bean>
 </beans>
