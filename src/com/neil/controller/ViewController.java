@@ -54,8 +54,8 @@ public class ViewController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "studentHandler")
-	public void studentHandler(Model model, HttpServletRequest req, HttpServletResponse res,
+	@RequestMapping(value = "updateStudent")
+	public void updateStudent(Model model, HttpServletRequest req, HttpServletResponse res,
 			@RequestParam(required = false) String id,
 			@RequestParam(required = false) String value,
 			@RequestParam(required = false) String columnName) throws IOException {
@@ -77,6 +77,37 @@ public class ViewController {
 		}
 		
 			res.getWriter().print(value);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "deleteStudent")
+	public void deleteStudent(Model model, HttpServletRequest req, HttpServletResponse res,
+			@RequestParam(required = false) String id,
+			@RequestParam(required = false) String value,
+			@RequestParam(required = false) String columnName) throws IOException {
+		
+		studentDao.deleteStudent(studentDao.getStudent(id));
+		res.getWriter().print("ok");
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "addStudent")
+	public void addStudent(Model model, HttpServletRequest req, HttpServletResponse res,
+			@RequestParam(required = false) String username,
+			@RequestParam(required = false) String name,
+			@RequestParam(required = false) String course_type,
+			@RequestParam(required = false) String nationality,
+			@RequestParam(required = false) String groupID) throws IOException {
+		
+		StudentObj so = new StudentObj();
+		so.setCourse_type(course_type);
+		so.setGroupID(groupID);
+		so.setName(name);
+		so.setNationality(nationality);
+		so.setUsername(username);
+		studentDao.saveStudent(so);
+		
+		res.getWriter().print("ok");
 	}
 
 }

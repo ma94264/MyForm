@@ -2,11 +2,14 @@
 <flow xmlns="http://www.springframework.org/schema/webflow"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow.xsd">
-	<var name="studentList" class="java.util.ArrayList"/>
+	<!-- <var name="studentList" class="java.util.ArrayList"/> -->
 	
 	<view-state id="show" view="course/show">
 	<on-entry>
-		<evaluate expression="StudentDao.getAllStudents()" result="studentList"/>
+		<evaluate expression="StudentDao.getAllStudents()" result="viewScope.studentList" />
 	</on-entry>
+	<transition on="refresh" to="show" />
 	</view-state>
+	
+	
 </flow>

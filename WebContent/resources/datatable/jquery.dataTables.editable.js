@@ -279,6 +279,7 @@ returns true if plugin should continue with sending AJAX request, false will abo
                     return updateData;
                 },
                 "callback": function (sValue, settings) {
+                	
                     properties.fnEndProcessingMode();
                     var status = "";
                     var aPos = oTable.fnGetPosition(this);
@@ -330,6 +331,7 @@ returns true if plugin should continue with sending AJAX request, false will abo
                                 */
                                 setTimeout(function () { keys.block = false; }, 0);
                             }
+                    refreshPage();
                 },
                 "onerror": function () {
                     properties.fnEndProcessingMode();
@@ -405,6 +407,7 @@ returns true if plugin should continue with sending AJAX request, false will abo
                         $(oAddNewRowForm).ajaxSubmit({
                             dataType: 'xml',
                             success: function (response, statusString, xhr) {
+                            	
                                 if (xhr.responseText.toLowerCase().indexOf("error") != -1) {
                                     properties.fnEndProcessingMode();
                                     properties.fnShowError(xhr.responseText.replace("Error",""), "add");
@@ -412,7 +415,6 @@ returns true if plugin should continue with sending AJAX request, false will abo
                                 } else {
                                     fnOnRowAdded(xhr.responseText);
                                 }
-
                             },
                             error: function (response) {
                                 properties.fnEndProcessingMode();
@@ -423,7 +425,6 @@ returns true if plugin should continue with sending AJAX request, false will abo
                         );
 
                     } else {
-
                         var params = oAddNewRowForm.serialize();
                         $.ajax({ 'url': properties.sAddURL,
                             'data': params,
@@ -446,7 +447,7 @@ returns true if plugin should continue with sending AJAX request, false will abo
         function _fnOnNewRowPosted(data) {
             ///<summary>Callback function called BEFORE a new record is posted to the server</summary>
             ///TODO: Check this
-
+        	refreshPage();
             return true;
         }
 
@@ -458,7 +459,8 @@ returns true if plugin should continue with sending AJAX request, false will abo
             ///</summary>
             ///<param name="data" type="int">Id of the new row that is returned from the server</param>
 
-            properties.fnEndProcessingMode();
+        	//Neil ADD callback to here first
+        	properties.fnEndProcessingMode();
 
             if (properties.fnOnNewRowPosted(data)) {
 
@@ -689,6 +691,7 @@ returns true if plugin should continue with sending AJAX request, false will abo
                     oTable.keys.fnSetPosition( oKeyTablePosition[0], oKeyTablePosition[1] ); 
                 }
                 properties.fnOnDeleted("success");
+                
             }
             else {
                 properties.fnShowError(response, "delete");
@@ -704,11 +707,11 @@ returns true if plugin should continue with sending AJAX request, false will abo
         *           "failure" if delete failed
         * @return   void
         */
-        function _fnOnDeleted(result) { }
+        function _fnOnDeleted(result) {refreshPage(); }
 
         function _fnOnEditing(input) { return true; }
         function _fnOnEdited(result, sOldValue, sNewValue, iRowIndex, iColumnIndex, iRealColumnIndex) {
-
+        	
         }
 
         function fnOnAdding() { return true; }
@@ -1379,3 +1382,4 @@ returns true if plugin should continue with sending AJAX request, false will abo
         });
     };
 })(jQuery);
+
