@@ -17,6 +17,7 @@
 
     <!-- Add custom CSS here -->
     <link href="<c:url value="/resources/css/sb-admin.css" />" rel="stylesheet">
+
     <link rel="stylesheet" href="<c:url value="/resources/font-awesome/css/font-awesome.min.css" />">
     <!-- Page Specific CSS -->
     <link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
@@ -68,14 +69,11 @@
     </div><!-- /#wrapper -->
 
     <!-- JavaScript -->
-    <script src="js/jquery-1.10.2.js"></script>
-    <script src="js/bootstrap.js"></script>
+    <script src="<c:url value="/resources/js/jquery-1.11.1.js" />"></script>
+    <script src="<c:url value="/resources/js/bootstrap.js" />"></script>
 
-    <!-- Page Specific Plugins -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-    <script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>
-    <script src="js/morris/chart-data-morris.js"></script>
-    <script src="js/tablesorter/jquery.tablesorter.js"></script>
-    <script src="js/tablesorter/tables.js"></script>
+    <!-- Page Specific Plugins -->      
+	<script src="<c:url value="/resources/js/tablesorter/jquery.tablesorter.js" />"></script>
+    <script src="<c:url value="/resources/js/tablesorter/tables.js" />"></script>
   </body>
 </html>

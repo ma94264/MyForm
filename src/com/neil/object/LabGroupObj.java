@@ -1,21 +1,24 @@
 package com.neil.object;
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="LAB_GROUP")
-public class LabGroupObj {
+public class LabGroupObj implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2961300352341753752L;
+
 	@Id
     @Column(name="ID")
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private String id;
 	
 	@Column(name = "session_start")
 	private Date session_start;
@@ -30,10 +33,10 @@ public class LabGroupObj {
 	private String venue;
 	@Column(name = "course")
 	private String course;
-	public long getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public Date getSession_start() {

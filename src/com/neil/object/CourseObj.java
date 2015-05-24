@@ -1,4 +1,6 @@
 package com.neil.object;
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -6,8 +8,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="COURSE")
-public class CourseObj {
+public class CourseObj implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1128460114489971262L;
+
 	@Id
     @Column(name="course")
 	private String course;

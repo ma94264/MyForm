@@ -1,4 +1,5 @@
 package com.neil.object;
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -10,8 +11,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="REPORT")
-public class ReportObj {
+public class ReportObj implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -25035459988272487L;
+
 	@Id
     @Column(name="ID")
     @GeneratedValue(strategy=GenerationType.IDENTITY)

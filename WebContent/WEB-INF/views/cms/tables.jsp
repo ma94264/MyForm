@@ -431,13 +431,12 @@
 
     </div><!-- /#wrapper -->
 
-    <!-- JavaScript -->
-    <script src="js/jquery-1.10.2.js"></script>
-    <script src="js/bootstrap.js"></script>
+	<!-- JavaScript -->
+    <script src="<c:url value="/resources/js/jquery-1.11.1.js" />"></script>
+    <script src="<c:url value="/resources/js/bootstrap.js" />"></script>
 
     <!-- Page Specific Plugins -->
-    <script src="js/tablesorter/jquery.tablesorter.js"></script>
-    <script src="js/tablesorter/tables.js"></script>
-
+    <script src="<c:url value="/resources/js/tablesorter/jquery.tablesorter.js" />"></script>
+    <script src="<c:url value="/resources/js/tablesorter/tables.js" />"></script>
   </body>
 </html>

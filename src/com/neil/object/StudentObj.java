@@ -1,4 +1,6 @@
 package com.neil.object;
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -6,8 +8,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="STUDENT")
-public class StudentObj {
+public class StudentObj implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2312738339276338463L;
+
 	@Id
     @Column(name="username")
 	private String username;
@@ -22,7 +29,7 @@ public class StudentObj {
 	private String nationality;
 	
 	@Column(name = "groupID")
-	private long groupID;
+	private String groupID;
 
 	public String getUsername() {
 		return username;
@@ -56,11 +63,11 @@ public class StudentObj {
 		this.nationality = nationality;
 	}
 
-	public long getGroupID() {
+	public String getGroupID() {
 		return groupID;
 	}
 
-	public void setGroupID(long groupID) {
+	public void setGroupID(String groupID) {
 		this.groupID = groupID;
 	}
 	

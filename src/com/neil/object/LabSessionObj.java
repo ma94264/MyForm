@@ -1,5 +1,7 @@
 package com.neil.object;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,8 +11,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="LAB_GROUP")
-public class LabSessionObj {
+public class LabSessionObj implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5934229845353126239L;
+
 	@Id
     @Column(name="ID")
     @GeneratedValue(strategy=GenerationType.IDENTITY)

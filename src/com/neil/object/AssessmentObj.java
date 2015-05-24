@@ -1,4 +1,6 @@
 package com.neil.object;
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,8 +10,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="ASSESSMENT")
-public class AssessmentObj {
+public class AssessmentObj implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4743256129056116910L;
+
 	@Id
     @Column(name="ID")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
