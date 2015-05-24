@@ -12,7 +12,7 @@
 </style>
 	
 <script src="<c:url value="/resources/datatable/jquery.min.js" />" type="text/javascript"></script>
-        <script src="<c:url value="/resources/datatable/jquery.dataTables.min.js" />" type="text/javascript"></script>
+        <script src="<c:url value="/resources/datatable/jquery.dataTables.js" />" type="text/javascript"></script>
         <script src="<c:url value="/resources/datatable/jquery.jeditable.js" />" type="text/javascript"></script>
         <script src="<c:url value="/resources/datatable/jquery-ui.js" />" type="text/javascript"></script>
         <script src="<c:url value="/resources/datatable/jquery.validate.js" />" type="text/javascript"></script>
