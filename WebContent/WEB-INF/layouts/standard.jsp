@@ -68,12 +68,5 @@
 		</div>
     </div><!-- /#wrapper -->
 
-    <!-- JavaScript -->
-    <script src="<c:url value="/resources/js/jquery-1.11.1.js" />"></script>
-    <script src="<c:url value="/resources/js/bootstrap.js" />"></script>
-
-    <!-- Page Specific Plugins -->      
-	<script src="<c:url value="/resources/js/tablesorter/jquery.tablesorter.js" />"></script>
-    <script src="<c:url value="/resources/js/tablesorter/tables.js" />"></script>
   </body>
 </html>
