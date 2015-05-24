@@ -2,9 +2,11 @@ package com.neil.dao;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +30,7 @@ private static final Log log = LogFactory.getLog(StudentDao.class);
 		return c.list();
 	}
 	
-	public StudentObj getStudent(long id) {
+	public StudentObj getStudent(String id) {
 		log.debug("getStudent() entry");
 		Session ses = sessionFactory.getCurrentSession();
 		return (StudentObj) ses.get(StudentObj.class, id);
@@ -45,4 +47,11 @@ private static final Log log = LogFactory.getLog(StudentDao.class);
 		Session ses = sessionFactory.getCurrentSession();
 		ses.delete(obj);
 	}
+	
+//	public int updateStudent(String columnName, String value, String username){
+//		Session ses = sessionFactory.getCurrentSession();
+//		Query query = ses.createQuery("update StudentObj set "+StringUtils.lowerCase(columnName)+" = '" + value +
+//				"' where username = '" + username + "'");
+//		return query.executeUpdate();
+//	}
 }

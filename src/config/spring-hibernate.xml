@@ -15,11 +15,7 @@
 				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
 			</props>
 		</property>
-		<property name="packagesToScan">
-			<list>
-				<value>com.neil.object</value>
-			</list>
-		</property>
+		<property name="packagesToScan" value="com.neil.object"/>
 	</bean>
 
 	<bean id="transactionManager"

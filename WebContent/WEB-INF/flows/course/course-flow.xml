@@ -3,6 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow.xsd">
 	<var name="studentList" class="java.util.ArrayList"/>
+	
 	<view-state id="show" view="course/show">
 	<on-entry>
 		<evaluate expression="StudentDao.getAllStudents()" result="studentList"/>
