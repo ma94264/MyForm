@@ -26,7 +26,8 @@ $(document).ready(function() {
 			{
 				sUpdateURL:"/SmartLab/updateStudent.neil",
 				sDeleteURL: "/SmartLab/deleteStudent.neil",
-				sAddURL: "/SmartLab/addStudent.neil"
+				sAddURL: "/SmartLab/addStudent.neil",
+				sAddNewRowButtonId: "btnAddRow"
 			});
 	
 } );
@@ -71,20 +72,14 @@ function refreshPage(){
 		</div>
 	</div>
 <!-- Place holder where add and delete buttons will be generated -->
-<div class="add_delete_toolbar"><button id="btnDeleteRow">Delete</button></div>
-
+<div class="add_delete_toolbar"><button id="btnDeleteRow" class="btn btn-primary btn-sm">Delete</button><button id="btnAddRow" class="btn btn-primary btn-sm">Add</button></div>
 <!-- Custom form for adding new records -->
  <form id="formAddNewRow" action="#" title="Add New Student">
-    <label for="username">Username</label><br />
-	<input type="text" name="username" id="username" class="required" rel="0" /><br />
-    <label for="username">Name</label><br />
-	<input type="text" name="name" id="name" class="required" rel="1" /><br />
-	<label for="username">Course Type</label><br />
-	<input type="text" name="course_type" id="course_type" class="required" rel="2" /><br />
-	<label for="username">Nationality</label><br />
-	<input type="text" name="nationality" id="nationality" class="required" rel="3" /><br />
-	<label for="username">Group</label><br />
-	<input type="text" name="groupID" id="groupID" class="required" rel="4" />    
+	<input type="text" name="username" id="username" class="required" rel="0" class="form-control" placeholder="Username" style="margin: 5px;"/><br />
+	<input type="text" name="name" id="name" class="required" rel="1" class="form-control" placeholder="Name" style="margin: 5px;"/><br />
+	<input type="text" name="course_type" id="course_type" class="required" rel="2" class="form-control" placeholder="Course Type" style="margin: 5px;"/><br />
+	<input type="text" name="nationality" id="nationality" class="required" rel="3" class="form-control" placeholder="Nationality" style="margin: 5px;"/><br />
+	<input type="text" name="groupID" id="groupID" class="required" rel="4" class="form-control" placeholder="Group" style="margin: 5px;"/>    
 </form>
 </div>
 <!-- /#page-wrapper -->
