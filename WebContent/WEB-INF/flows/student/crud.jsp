@@ -53,7 +53,6 @@ function refreshPage(){
 							<th>Name</th>
 							<th>Course Type</th>
 							<th>Nationality</th>
-							<th>Group</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -63,7 +62,6 @@ function refreshPage(){
 								<td><c:out value="${student.name}" /></td>
 								<td><c:out value="${student.course_type}" /></td>
 								<td><c:out value="${student.nationality}" /></td>
-								<td><c:out value="${student.groupID}" /></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -79,7 +77,6 @@ function refreshPage(){
 	<input type="text" name="name" id="name" class="required" rel="1" class="form-control" placeholder="Name" style="margin: 5px;"/><br />
 	<input type="text" name="course_type" id="course_type" class="required" rel="2" class="form-control" placeholder="Course Type" style="margin: 5px;"/><br />
 	<input type="text" name="nationality" id="nationality" class="required" rel="3" class="form-control" placeholder="Nationality" style="margin: 5px;"/><br />
-	<input type="text" name="groupID" id="groupID" class="required" rel="4" class="form-control" placeholder="Group" style="margin: 5px;"/>    
 </form>
 </div>
 <!-- /#page-wrapper -->

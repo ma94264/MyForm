@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -18,7 +20,8 @@ public class LabGroupObj implements Serializable{
 
 	@Id
     @Column(name="ID")
-	private String id;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private long id;
 	
 	@Column(name = "session_start")
 	private Date session_start;
@@ -33,10 +36,14 @@ public class LabGroupObj implements Serializable{
 	private String venue;
 	@Column(name = "course")
 	private String course;
-	public String getId() {
+	
+	@Column(name = "group")
+	private String group;
+	
+	public long getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public Date getSession_start() {
@@ -74,6 +81,12 @@ public class LabGroupObj implements Serializable{
 	}
 	public void setCourse(String course) {
 		this.course = course;
+	}
+	public String getGroup() {
+		return group;
+	}
+	public void setGroup(String group) {
+		this.group = group;
 	}
 	
 	

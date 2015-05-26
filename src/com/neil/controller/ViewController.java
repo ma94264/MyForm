@@ -70,8 +70,6 @@ public class ViewController {
 				so.setCourse_type(value);
 			if(StringUtils.containsIgnoreCase(columnName, "nation"))
 				so.setNationality(value);
-			if(StringUtils.containsIgnoreCase(columnName, "group"))
-				so.setGroupID(value);
 			
 			studentDao.saveStudent(so);
 		}
@@ -101,7 +99,6 @@ public class ViewController {
 		
 		StudentObj so = new StudentObj();
 		so.setCourse_type(course_type);
-		so.setGroupID(groupID);
 		so.setName(name);
 		so.setNationality(nationality);
 		so.setUsername(username);

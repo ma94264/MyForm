@@ -27,9 +27,6 @@ public class StudentObj implements Serializable{
 	
 	@Column(name = "nationality")
 	private String nationality;
-	
-	@Column(name = "groupID")
-	private String groupID;
 
 	public String getUsername() {
 		return username;
@@ -62,15 +59,5 @@ public class StudentObj implements Serializable{
 	public void setNationality(String nationality) {
 		this.nationality = nationality;
 	}
-
-	public String getGroupID() {
-		return groupID;
-	}
-
-	public void setGroupID(String groupID) {
-		this.groupID = groupID;
-	}
-	
-	
 	
 }
