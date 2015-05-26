@@ -175,20 +175,20 @@ public class ViewController {
 		
 		if(StringUtils.isNotEmpty(id)&&StringUtils.isNotEmpty(value)){
 			LabGroupObj lgo = labGroupDao.getLabGroup(Long.parseLong(id));
-//			if(StringUtils.containsIgnoreCase(columnName, "course"))
-//				lgo.setCourse(value);
-//			if(StringUtils.containsIgnoreCase(columnName, "group"))
-//				lgo.setGroup(value);
-//			if(StringUtils.containsIgnoreCase(columnName, "venue"))
-//				lgo.setVenue(value);
-//			if(StringUtils.containsIgnoreCase(columnName, "session")&&StringUtils.containsIgnoreCase(columnName, "start"))
-//				lgo.setSession_start(timeFormatter.parse(value));
-//			if(StringUtils.containsIgnoreCase(columnName, "session")&&StringUtils.containsIgnoreCase(columnName, "end"))
-//				lgo.setSession_end(timeFormatter.parse(value));
-//			if(StringUtils.containsIgnoreCase(columnName, "week")&&StringUtils.containsIgnoreCase(columnName, "start"))
-//				lgo.setWeek_start(Integer.valueOf(value));
-//			if(StringUtils.containsIgnoreCase(columnName, "week")&&StringUtils.containsIgnoreCase(columnName, "end"))
-//				lgo.setWeek_end(Integer.valueOf(value));
+			if(StringUtils.containsIgnoreCase(columnName, "course"))
+				lgo.setCourse(value);
+			if(StringUtils.containsIgnoreCase(columnName, "group"))
+				lgo.setGroup(value);
+			if(StringUtils.containsIgnoreCase(columnName, "venue"))
+				lgo.setVenue(value);
+			if(StringUtils.containsIgnoreCase(columnName, "session")&&StringUtils.containsIgnoreCase(columnName, "start"))
+				lgo.setSession_start(timeFormatter.parse(value));
+			if(StringUtils.containsIgnoreCase(columnName, "session")&&StringUtils.containsIgnoreCase(columnName, "end"))
+				lgo.setSession_end(timeFormatter.parse(value));
+			if(StringUtils.containsIgnoreCase(columnName, "week")&&StringUtils.containsIgnoreCase(columnName, "start"))
+				lgo.setWeek_start(Integer.valueOf(value));
+			if(StringUtils.containsIgnoreCase(columnName, "week")&&StringUtils.containsIgnoreCase(columnName, "end"))
+				lgo.setWeek_end(Integer.valueOf(value));
 			
 			labGroupDao.saveLabGroup(lgo);
 		}

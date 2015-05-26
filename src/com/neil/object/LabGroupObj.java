@@ -42,7 +42,7 @@ public class LabGroupObj implements Serializable{
 	@Column(name = "course")
 	private String course;
 	
-	@Column(name = "group")
+	@Column(name = "group_name")
 	private String group;
 	
 	public long getId() {
