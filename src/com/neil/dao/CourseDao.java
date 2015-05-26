@@ -7,11 +7,13 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.neil.object.CourseObj;
+import com.neil.object.LabGroupObj;
 
 @Repository("CourseDao")
 @Transactional
@@ -43,6 +45,14 @@ private static final Log log = LogFactory.getLog(CourseDao.class);
 	public void deleteCourse(CourseObj obj){
 		log.debug("deleteCourse() entry");
 		Session ses = sessionFactory.getCurrentSession();
+		//delete all children, all LabGroupObjs 
+		Criteria c = ses.createCriteria(LabGroupObj.class);
+		@SuppressWarnings("unchecked")
+		List<LabGroupObj> lgolist = c.add(Restrictions.eq("course",obj.getCourse())).list();
+		for(LabGroupObj lgo : lgolist){
+			ses.delete(lgo);
+		}
+		//delete parent
 		ses.delete(obj);
 	}
 }

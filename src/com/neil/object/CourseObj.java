@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name="COURSE")
 public class CourseObj implements Serializable{
@@ -23,6 +24,7 @@ public class CourseObj implements Serializable{
 	private String program;
 	@Column(name = "class_type")
 	private String class_type;
+	
 	public String getCourse() {
 		return course;
 	}
@@ -41,7 +43,5 @@ public class CourseObj implements Serializable{
 	public void setClass_type(String class_type) {
 		this.class_type = class_type;
 	}
-	
-	
 	
 }
