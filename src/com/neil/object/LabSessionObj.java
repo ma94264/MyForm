@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="LAB_GROUP")
+@Table(name="LAB_SESSION")
 public class LabSessionObj implements Serializable{
 	
 	/**

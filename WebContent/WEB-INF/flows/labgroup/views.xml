@@ -5,8 +5,8 @@
 	
 <tiles-definitions>
 
-		<definition name="student/*" extends="standardLayout">
-		<put-attribute name="body" value="/WEB-INF/flows/student/{1}.jsp" />
+		<definition name="labgroup/*" extends="standardLayout">
+		<put-attribute name="body" value="/WEB-INF/flows/labgroup/{1}.jsp" />
 	</definition>
 
 </tiles-definitions>

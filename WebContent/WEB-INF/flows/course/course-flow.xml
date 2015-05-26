@@ -4,9 +4,9 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow.xsd">
 	<!-- <var name="studentList" class="java.util.ArrayList"/> -->
 	
-	<view-state id="crud" view="student/crud">
+	<view-state id="crud" view="course/crud">
 	<on-entry>
-		<evaluate expression="StudentDao.getAllStudents()" result="viewScope.studentList" />
+		<evaluate expression="CourseDao.getAllCourses()" result="viewScope.courseList" />
 	</on-entry>
 	<transition on="refresh" to="crud" />
 	</view-state>

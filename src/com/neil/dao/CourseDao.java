@@ -28,10 +28,10 @@ private static final Log log = LogFactory.getLog(CourseDao.class);
 		return c.list();
 	}
 	
-	public CourseObj getCourse(long id) {
+	public CourseObj getCourse(String course) {
 		log.debug("getCourse() entry");
 		Session ses = sessionFactory.getCurrentSession();
-		return (CourseObj) ses.get(CourseObj.class, id);
+		return (CourseObj) ses.get(CourseObj.class, course);
 	}
 	
 	public void saveCourse(CourseObj obj) {

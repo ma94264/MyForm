@@ -22,11 +22,11 @@
 
 
 $(document).ready(function() {
-	$('#student').dataTable().makeEditable(
+	$('#course').dataTable().makeEditable(
 			{
-				sUpdateURL:"/SmartLab/updateStudent.neil",
-				sDeleteURL: "/SmartLab/deleteStudent.neil",
-				sAddURL: "/SmartLab/addStudent.neil",
+				sUpdateURL:"/SmartLab/updateCourse.neil",
+				sDeleteURL: "/SmartLab/deleteCourse.neil",
+				sAddURL: "/SmartLab/addCourse.neil",
 				sAddNewRowButtonId: "btnAddRow",
 				sDeleteRowButtonId: "btnDeleteRow"
 			});
@@ -43,26 +43,24 @@ function refreshPage(){
 
 	<div class="row">
 		<div class="col-lg-12">
-			<h2>Student</h2>
+			<h2>Course</h2>
 
 			<div class="table-responsive">
-				<table id="student"
+				<table id="course"
 					class="table">
 					<thead>
 						<tr>
-							<th>Username</th>
-							<th>Name</th>
-							<th>Course Type</th>
-							<th>Nationality</th>
+							<th>Course</th>
+							<th>Program</th>
+							<th>Class Type</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${studentList}" var="student">
-							<tr id="<c:out value="${student.username}" />">
-								<td><c:out value="${student.username}" /></td>
-								<td><c:out value="${student.name}" /></td>
-								<td><c:out value="${student.course_type}" /></td>
-								<td><c:out value="${student.nationality}" /></td>
+						<c:forEach items="${courseList}" var="course">
+							<tr id="<c:out value="${course.course}" />">
+								<td><c:out value="${course.course}" /></td>
+								<td><c:out value="${course.program}" /></td>
+								<td><c:out value="${course.class_type}" /></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -73,11 +71,10 @@ function refreshPage(){
 <!-- Place holder where add and delete buttons will be generated -->
 <button id="btnDeleteRow" class="btn btn-primary btn-sm">Delete</button><button id="btnAddRow" class="btn btn-primary btn-sm">Add</button>
 <!-- Custom form for adding new records -->
- <form id="formAddNewRow" action="#" title="Add New Student">
-	<input type="text" name="username" id="username" class="required" rel="0" class="form-control" placeholder="Username" style="margin: 5px;"/><br />
-	<input type="text" name="name" id="name" class="required" rel="1" class="form-control" placeholder="Name" style="margin: 5px;"/><br />
-	<input type="text" name="course_type" id="course_type" class="required" rel="2" class="form-control" placeholder="Course Type" style="margin: 5px;"/><br />
-	<input type="text" name="nationality" id="nationality" class="required" rel="3" class="form-control" placeholder="Nationality" style="margin: 5px;"/><br />
+ <form id="formAddNewRow" action="#" title="Add New Course">
+	<input type="text" name="course" id="course" class="required" rel="0" class="form-control" placeholder="Course" style="margin: 5px;"/><br />
+	<input type="text" name="program" id="program" class="required" rel="1" class="form-control" placeholder="Program" style="margin: 5px;"/><br />
+	<input type="text" name="class_type" id="class_type" class="required" rel="2" class="form-control" placeholder="Class Type" style="margin: 5px;"/><br />
 </form>
 </div>
 <!-- /#page-wrapper -->

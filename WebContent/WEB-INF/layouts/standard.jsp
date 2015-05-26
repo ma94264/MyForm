@@ -45,6 +45,9 @@
           <ul class="nav navbar-nav side-nav">
             <li class="active"><a href="home.neil"><i class="fa fa-dashboard"></i> Dashboard</a></li>
             <li><a href="tables.neil"><i class="fa fa-table"></i> Tables</a></li>
+            <li><a href="student.neil"><i class="fa fa-table"></i> Student</a></li>
+            <li><a href="course.neil"><i class="fa fa-table"></i> Course</a></li>
+            <li><a href="labgroup.neil"><i class="fa fa-table"></i> Lab Group</a></li>
             </li>
           </ul>
 

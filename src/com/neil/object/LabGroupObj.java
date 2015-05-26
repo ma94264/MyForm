@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="LAB_GROUP")
@@ -23,10 +25,13 @@ public class LabGroupObj implements Serializable{
     @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	
-	@Column(name = "session_start")
+	@Column(name = "session_start", columnDefinition="DATETIME")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date session_start;
-	@Column(name = "session_end")
+	@Column(name = "session_end", columnDefinition="DATETIME")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date session_end;
+	
 	@Column(name = "week_start")
 	private int week_start;
 	@Column(name = "week_end")

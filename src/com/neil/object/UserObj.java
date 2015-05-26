@@ -16,7 +16,7 @@ public class UserObj {
 	private String password;
 
 	@Column(name = "enabled")
-	private boolean enabled;
+	private byte enabled;
 
 	public String getUsername() {
 		return username;
@@ -34,11 +34,11 @@ public class UserObj {
 		this.password = password;
 	}
 
-	public boolean isEnabled() {
+	public byte isEnabled() {
 		return enabled;
 	}
 
-	public void setEnabled(boolean enabled) {
+	public void setEnabled(byte enabled) {
 		this.enabled = enabled;
 	}
 	
