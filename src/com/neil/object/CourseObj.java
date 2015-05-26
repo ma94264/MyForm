@@ -1,10 +1,13 @@
 package com.neil.object;
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 @Entity
@@ -24,7 +27,25 @@ public class CourseObj implements Serializable{
 	private String program;
 	@Column(name = "class_type")
 	private String class_type;
+	@Column(name = "week1_mon", columnDefinition="DATE")
+	@Temporal(TemporalType.DATE)
+	private Date week1_mon;
+	@Column(name = "recess_mon", columnDefinition="DATE")
+	@Temporal(TemporalType.DATE)
+	private Date recess_mon;
 	
+	public Date getWeek1_mon() {
+		return week1_mon;
+	}
+	public void setWeek1_mon(Date week1_mon) {
+		this.week1_mon = week1_mon;
+	}
+	public Date getRecess_mon() {
+		return recess_mon;
+	}
+	public void setRecess_mon(Date recess_mon) {
+		this.recess_mon = recess_mon;
+	}
 	public String getCourse() {
 		return course;
 	}

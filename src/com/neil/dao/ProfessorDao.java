@@ -28,7 +28,7 @@ private static final Log log = LogFactory.getLog(ProfessorDao.class);
 		return c.list();
 	}
 	
-	public ProfessorObj getProfessor(long id) {
+	public ProfessorObj getProfessor(String id) {
 		log.debug("getProfessor() entry");
 		Session ses = sessionFactory.getCurrentSession();
 		return (ProfessorObj) ses.get(ProfessorObj.class, id);

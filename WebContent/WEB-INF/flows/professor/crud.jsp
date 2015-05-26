@@ -1,6 +1,5 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
 
 <link rel="stylesheet" type="text/css"
@@ -23,11 +22,11 @@
 
 
 $(document).ready(function() {
-	$('#course').dataTable().makeEditable(
+	$('#professor').dataTable().makeEditable(
 			{
-				sUpdateURL:"/SmartLab/updateCourse.neil",
-				sDeleteURL: "/SmartLab/deleteCourse.neil",
-				sAddURL: "/SmartLab/addCourse.neil",
+				sUpdateURL:"/SmartLab/updateProfessor.neil",
+				sDeleteURL: "/SmartLab/deleteProfessor.neil",
+				sAddURL: "/SmartLab/addProfessor.neil",
 				sAddNewRowButtonId: "btnAddRow",
 				sDeleteRowButtonId: "btnDeleteRow"
 			});
@@ -44,28 +43,22 @@ function refreshPage(){
 
 	<div class="row">
 		<div class="col-lg-12">
-			<h2>Course</h2>
+			<h2>Professor</h2>
 
 			<div class="table-responsive">
-				<table id="course"
+				<table id="professor"
 					class="table">
 					<thead>
 						<tr>
-							<th>Course</th>
-							<th>Program</th>
-							<th>Class Type</th>
-							<th>Week 1 Monday</th>
-							<th>Recess Monday</th>
+							<th>Username</th>
+							<th>Name</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${courseList}" var="course">
-							<tr id="<c:out value="${course.course}" />">
-								<td><c:out value="${course.course}" /></td>
-								<td><c:out value="${course.program}" /></td>
-								<td><c:out value="${course.class_type}" /></td>
-								<td><fmt:formatDate type="date" pattern="yyyy-MM-dd" value="${course.week1_mon}" /></td>
-								<td><fmt:formatDate type="date" pattern="yyyy-MM-dd" value="${course.recess_mon}" /></td>
+						<c:forEach items="${professorList}" var="professor">
+							<tr id="<c:out value="${professor.username}" />">
+								<td><c:out value="${professor.username}" /></td>
+								<td><c:out value="${professor.name}" /></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -76,12 +69,9 @@ function refreshPage(){
 <!-- Place holder where add and delete buttons will be generated -->
 <button id="btnDeleteRow" class="btn btn-primary btn-sm">Delete</button><button id="btnAddRow" class="btn btn-primary btn-sm">Add</button>
 <!-- Custom form for adding new records -->
- <form id="formAddNewRow" action="#" title="Add New Course">
-	<input type="text" name="course" id="course" class="required" rel="0" class="form-control" placeholder="Course" style="margin: 5px;"/><br />
-	<input type="text" name="program" id="program" class="required" rel="1" class="form-control" placeholder="Program" style="margin: 5px;"/><br />
-	<input type="text" name="class_type" id="class_type" class="required" rel="2" class="form-control" placeholder="Class Type" style="margin: 5px;"/><br />
-	<input type="text" name=week1_mon id="week1_mon" class="required" rel="3" class="form-control" placeholder="Class Type" style="margin: 5px;"/><br />
-	<input type="text" name="recess_mon" id="recess_mon" class="required" rel="4" class="form-control" placeholder="Class Type" style="margin: 5px;"/><br />
+ <form id="formAddNewRow" action="#" title="Add New Professor">
+	<input type="text" name="username" id="username" class="required" rel="0" class="form-control" placeholder="Username" style="margin: 5px;"/><br />
+	<input type="text" name="name" id="name" class="required" rel="1" class="form-control" placeholder="Name" style="margin: 5px;"/><br />
 </form>
 </div>
 <!-- /#page-wrapper -->
