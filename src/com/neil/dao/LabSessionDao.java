@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.neil.object.LabGroupObj;
 import com.neil.object.LabSessionObj;
 
 @Repository("LabSessionDao")
@@ -24,8 +25,13 @@ private static final Log log = LogFactory.getLog(LabSessionDao.class);
 	@SuppressWarnings("unchecked")
 	public List<LabSessionObj> getAllLabSessions(){
 		log.debug("getAllLabSessions() entry");
-		Criteria c = sessionFactory.getCurrentSession().createCriteria(LabSessionObj.class);
-		return c.list();
+		Session ses = sessionFactory.getCurrentSession();
+		Criteria c = ses.createCriteria(LabSessionObj.class);
+		List<LabSessionObj> lsList = c.list();
+		for(LabSessionObj ls:lsList){
+			ls.setLgo((LabGroupObj) ses.get(LabGroupObj.class, ls.getGroupID()));
+		}
+		return lsList;
 	}
 	
 	public LabSessionObj getLabSession(long id) {

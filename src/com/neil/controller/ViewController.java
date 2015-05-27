@@ -21,10 +21,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.neil.dao.CourseDao;
 import com.neil.dao.LabGroupDao;
+import com.neil.dao.LabSessionDao;
 import com.neil.dao.ProfessorDao;
 import com.neil.dao.StudentDao;
 import com.neil.object.CourseObj;
 import com.neil.object.LabGroupObj;
+import com.neil.object.LabSessionObj;
 import com.neil.object.ProfessorObj;
 import com.neil.object.StudentObj;
 
@@ -40,7 +42,9 @@ public class ViewController {
 	private LabGroupDao labGroupDao;
 	@Autowired
 	private ProfessorDao professorDao;
-
+	@Autowired
+	private LabSessionDao labSessionDao;
+	
 	SimpleDateFormat timeFormatter = new SimpleDateFormat("HH:mm:ss");
 	SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -305,6 +309,57 @@ public class ViewController {
 		po.setName(name);
 		po.setUsername(username);
 		professorDao.saveProfessor(po);
+
+		res.getWriter().print("ok");
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "updateLabSession")
+	public void updateLabSession(Model model, HttpServletRequest req,
+			HttpServletResponse res, @RequestParam(required = false) String id,
+			@RequestParam(required = false) String value,
+			@RequestParam(required = false) String columnName)
+			throws IOException {
+
+			if (StringUtils.isNotEmpty(id) && StringUtils.isNotEmpty(value)) {
+				LabSessionObj lso = labSessionDao.getLabSession(Long.valueOf(id));
+				if (StringUtils.containsIgnoreCase(columnName, "professor"))
+					lso.setProfessor_username(value);
+				else if (StringUtils.containsIgnoreCase(columnName, "week"))
+					lso.setWeek_number(value);
+				else
+					value = "Sorry, you cannot edit it!";
+			res.getWriter().print(value);
+		}
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "deleteLabSession")
+	public void deleteLabSession(Model model, HttpServletRequest req,
+			HttpServletResponse res, @RequestParam(required = false) String id,
+			@RequestParam(required = false) String value,
+			@RequestParam(required = false) String columnName)
+			throws IOException {
+
+		labSessionDao.deleteLabSession(labSessionDao.getLabSession(Long.valueOf(id)));
+		res.getWriter().print("ok");
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "addLabSession")
+	public void addLabSession(Model model, HttpServletRequest req,
+			HttpServletResponse res,
+			@RequestParam(required = false) String professor_username,
+			@RequestParam(required = false) String course,
+			@RequestParam(required = false) String group,
+			@RequestParam(required = false) String week_number) throws IOException {
+
+		LabSessionObj lso = new LabSessionObj();
+		LabGroupObj lgo = labGroupDao.getLabGroupByCG(course, group);
+		lso.setGroupID(lgo.getId());
+		lso.setProfessor_username(professor_username);
+		lso.setWeek_number(week_number);
+		labSessionDao.saveLabSession(lso);
 
 		res.getWriter().print("ok");
 	}

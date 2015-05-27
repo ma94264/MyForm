@@ -7,6 +7,7 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +33,14 @@ private static final Log log = LogFactory.getLog(LabGroupDao.class);
 		log.debug("getLabGroup() entry");
 		Session ses = sessionFactory.getCurrentSession();
 		return (LabGroupObj) ses.get(LabGroupObj.class, id);
+	}
+	
+	public LabGroupObj getLabGroupByCG(String course, String group) {
+		log.debug("getLabGroup() entry");
+		Criteria c = sessionFactory.getCurrentSession().createCriteria(LabGroupObj.class);
+		c.add(Restrictions.eq("course", course));
+		c.add(Restrictions.eq("group", group));
+		return (LabGroupObj) c.list().get(0);
 	}
 	
 	public void saveLabGroup(LabGroupObj obj) {

@@ -48,7 +48,7 @@
             <li><a href="professor.neil"><i class="fa fa-table"></i> Professor</a></li>
             <li><a href="course.neil"><i class="fa fa-table"></i> Course</a></li>
             <li><a href="labgroup.neil"><i class="fa fa-table"></i> Lab Group</a></li>
-            
+            <li><a href="labsession.neil"><i class="fa fa-table"></i> Lab Session</a></li>
             </li>
           </ul>
 
