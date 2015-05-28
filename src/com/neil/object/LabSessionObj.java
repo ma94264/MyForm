@@ -22,7 +22,7 @@ public class LabSessionObj implements Serializable{
 	@Id
     @Column(name="ID")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	
 	@Column(name = "professor_username")
 	private String professor_username;
@@ -34,18 +34,20 @@ public class LabSessionObj implements Serializable{
 	@Transient
 	private LabGroupObj lgo;
 	
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public LabGroupObj getLgo() {
 		return lgo;
 	}
 	public void setLgo(LabGroupObj lgo) {
 		this.lgo = lgo;
 	}
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
+	
 	public long getGroupID() {
 		return groupID;
 	}

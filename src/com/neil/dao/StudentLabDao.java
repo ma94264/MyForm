@@ -7,6 +7,7 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +33,15 @@ private static final Log log = LogFactory.getLog(StudentLabDao.class);
 		log.debug("getStudentLab() entry");
 		Session ses = sessionFactory.getCurrentSession();
 		return (StudentLabObj) ses.get(StudentLabObj.class, id);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<StudentLabObj> getStudentLabByGroupID(long id) {
+		log.debug("getStudentLabByGroupID() entry");
+		Session ses = sessionFactory.getCurrentSession();
+		Criteria c = ses.createCriteria(StudentLabObj.class);
+		c.add(Restrictions.eq("groupID", id));
+		return c.list();
 	}
 	
 	public void saveStudentLab(StudentLabObj obj) {

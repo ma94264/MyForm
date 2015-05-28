@@ -20,15 +20,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.neil.dao.AssessmentDao;
 import com.neil.dao.CourseDao;
 import com.neil.dao.LabGroupDao;
 import com.neil.dao.LabSessionDao;
 import com.neil.dao.ProfessorDao;
 import com.neil.dao.StudentDao;
+import com.neil.dao.StudentLabDao;
+import com.neil.object.AssessmentObj;
 import com.neil.object.CourseObj;
 import com.neil.object.LabGroupObj;
 import com.neil.object.LabSessionObj;
 import com.neil.object.ProfessorObj;
+import com.neil.object.StudentLabObj;
 import com.neil.object.StudentObj;
 
 @Controller
@@ -45,6 +49,10 @@ public class ViewController {
 	private ProfessorDao professorDao;
 	@Autowired
 	private LabSessionDao labSessionDao;
+	@Autowired
+	private StudentLabDao studentLabDao;
+	@Autowired
+	private AssessmentDao assessmentDao;
 	
 	SimpleDateFormat timeFormatter = new SimpleDateFormat("HH:mm:ss");
 	SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -380,6 +388,17 @@ public class ViewController {
 			lso.setProfessor_username(professor_username);
 			lso.setWeek_number(week);
 			labSessionDao.saveLabSession(lso);
+			
+			//autogenerate Assessment when a lab session is created
+			//get student list for the lab session from STUDENT_LAB based on groupID
+			ArrayList<StudentLabObj> sll = (ArrayList<StudentLabObj>) studentLabDao.getStudentLabByGroupID(lso.getGroupID());
+			for(StudentLabObj slo : sll){
+				AssessmentObj ao = new AssessmentObj();
+				ao.setLab_sessionID(lso.getId());
+				ao.setStudent_username(slo.getStudent_username());
+				ao.setGrade(99);
+				assessmentDao.saveAsem(ao);
+			}
 		}
 		
 

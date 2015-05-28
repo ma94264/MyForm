@@ -22,16 +22,22 @@
 	</decision-state>
 
 	<decision-state id="checkWeekNull">
-		<if test="assessmentSearch.week == null" then="crud" else="crud"/>
+		<if test="assessmentSearch.week == null" then="crud" else="checkWeek"/>
 	</decision-state>
 	
 	<decision-state id="checkWeek">
-		<if test="assessmentSearch.week>0" then="setAssessment" else="crud"/>
+		<if test="assessmentSearch.week>0" then="setGroup" else="crud"/>
 	</decision-state>
 	
-	<action-state id="setAssessment">
+	<action-state id="setGroup">
 		<evaluate expression="LabGroupDao.getLabGroupByCG(assessmentSearch.course,assessmentSearch.group)" result="flowScope.labgroup"/>
+		<transition to="setSession" />
+	</action-state>
+	<action-state id="setSession">
 		<evaluate expression="LabSessionDao.getLabSessionByGWP(labgroup.id,assessmentSearch.week,'pshum')" result="flowScope.labsession"/>
+		<transition to="setAssessment" />
+	</action-state>
+	<action-state id="setAssessment">
 		<evaluate expression="AssessmentDao.getOneAsem(labsession.id)" result="assessmentList"/>
 		<transition to="crud" />
 	</action-state>

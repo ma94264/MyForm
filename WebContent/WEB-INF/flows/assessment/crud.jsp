@@ -85,7 +85,8 @@ function submitForm() {
 					<tbody>
 						<c:forEach items="${assessmentList}" var="assessment">
 							<tr id="<c:out value="${assessment.id}" />">
-								<td><c:out value="${assessment.student.name}" /></td>
+								<td><c:out value="${assessment.student_username}" /></td>
+								<td><c:out value="${assessment.student_name}" /></td>
 								<td><c:out value="${assessment.grade}" /></td>
 								<td><c:out value="${assessment.remark}" /></td>
 							</tr>

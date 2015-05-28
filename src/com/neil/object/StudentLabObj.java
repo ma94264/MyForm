@@ -26,7 +26,8 @@ public class StudentLabObj implements Serializable{
 	@Column(name = "student_username")
 	private String student_username;
 	@Column(name = "groupID")
-	private long groupID;
+	private Long groupID;
+	
 	public long getId() {
 		return id;
 	}
@@ -39,12 +40,14 @@ public class StudentLabObj implements Serializable{
 	public void setStudent_username(String student_username) {
 		this.student_username = student_username;
 	}
-	public long getGroupID() {
+	public Long getGroupID() {
 		return groupID;
 	}
-	public void setGroupID(long groupID) {
+	public void setGroupID(Long groupID) {
 		this.groupID = groupID;
 	}
+	
+	
 	
 	
 }

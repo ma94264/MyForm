@@ -1,5 +1,6 @@
 package com.neil.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.neil.object.AssessmentObj;
+import com.neil.object.StudentObj;
 
 @Repository("AssessmentDao")
 @Transactional
@@ -30,12 +32,19 @@ private static final Log log = LogFactory.getLog(AssessmentDao.class);
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<AssessmentObj> getOneAsem(long lab_sessionID){
+	public ArrayList<AssessmentObj> getOneAsem(long lab_sessionID){
 		log.debug("getOneAsem() entry");
 		Session ses = sessionFactory.getCurrentSession();
 		Criteria c = ses.createCriteria(AssessmentObj.class);
 		c.add(Restrictions.eq("lab_sessionID", lab_sessionID));
-		return c.list();
+		ArrayList<AssessmentObj> aol = new ArrayList<AssessmentObj>();
+		aol = (ArrayList<AssessmentObj>) c.list();
+		for(AssessmentObj ao: aol){
+			Session ses2 = sessionFactory.getCurrentSession();
+			StudentObj so = (StudentObj)ses2.get(StudentObj.class, ao.getStudent_username());
+			ao.setStudent_name(so.getName());
+		}
+		return aol;
 	}
 	
 	public AssessmentObj getAsem(long id) {
