@@ -53,7 +53,7 @@ function refreshPage(){
 					<thead>
 						<tr>
 							<th>Professor Username</th>
-							<th>Week Number (1,2,3)</th>
+							<th>Week Number</th>
 							<th>Course</th>
 							<th>Group Name</th>
 						</tr>
@@ -77,7 +77,7 @@ function refreshPage(){
 <!-- Custom form for adding new records -->
  <form id="formAddNewRow" action="#" title="Add New Lab Group">
 	<input type="text" name="professor_username" id="professor_username" class="required" rel="0" class="form-control" placeholder="Professor Username" style="margin: 5px;"/><br />
-	<input type="text" name="week_number" id="week_number" class="required" rel="1" class="form-control" placeholder="Week Number Ex.(1,2,3)" style="margin: 5px;"/><br />
+	<input type="text" name="week_number" id="week_number" class="required" rel="1" class="form-control" placeholder="Week Number Ex.(1,2,3,4-6)" style="margin: 5px;"/><br />
 	<input type="text" name="course" id="course" class="required" rel="2" class="form-control" placeholder="Course" style="margin: 5px;"/><br />
 	<input type="text" name="group" id="group" class="required" rel="3" class="form-control" placeholder="Group Name" style="margin: 5px;"/><br />
 </form>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+	<var name="assessmentSearch" class="com.neil.object.AssessmentSearch"/>
+	<var name="assessmentList" class="java.util.ArrayList"/>
+	
+	<decision-state id="checkCourseNull">
+		<if test="assessmentSearch.course == null" then="crud" else="checkCourse"/>
+	</decision-state>
+	
+	<decision-state id="checkCourse">
+		<if test="!assessmentSearch.course.isEmpty()" then="checkGroupNull" else="crud"/>
+	</decision-state>
+	
+	<decision-state id="checkGroupNull">
+		<if test="assessmentSearch.group == null" then="crud" else="checkGroup"/>
+	</decision-state>
+	
+	<decision-state id="checkGroup">
+		<if test="!assessmentSearch.group.isEmpty()" then="checkWeekNull" else="crud"/>
+	</decision-state>
+
+	<decision-state id="checkWeekNull">
+		<if test="assessmentSearch.week == null" then="crud" else="crud"/>
+	</decision-state>
+	
+	<decision-state id="checkWeek">
+		<if test="assessmentSearch.week>0" then="setAssessment" else="crud"/>
+	</decision-state>
+	
+	<action-state id="setAssessment">
+		<evaluate expression="LabGroupDao.getLabGroupByCG(assessmentSearch.course,assessmentSearch.group)" result="flowScope.labgroup"/>
+		<evaluate expression="LabSessionDao.getLabSessionByGWP(labgroup.id,assessmentSearch.week,'pshum')" result="flowScope.labsession"/>
+		<evaluate expression="AssessmentDao.getOneAsem(labsession.id)" result="assessmentList"/>
+		<transition to="crud" />
+	</action-state>
+	
+	<view-state id="crud" view="assessment/crud" model="assessmentSearch">
+		<transition on="refresh" to="crud" />
+		<transition on="search" to="checkCourseNull"/>
+	</view-state>
+	
+	
+</flow>

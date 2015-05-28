@@ -36,7 +36,7 @@ private static final Log log = LogFactory.getLog(LabGroupDao.class);
 	}
 	
 	public LabGroupObj getLabGroupByCG(String course, String group) {
-		log.debug("getLabGroup() entry");
+		log.debug("getLabGroupByCG() entry");
 		Criteria c = sessionFactory.getCurrentSession().createCriteria(LabGroupObj.class);
 		c.add(Restrictions.eq("course", course));
 		c.add(Restrictions.eq("group", group));

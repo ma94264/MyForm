@@ -7,6 +7,7 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +26,15 @@ private static final Log log = LogFactory.getLog(AssessmentDao.class);
 	public List<AssessmentObj> getAllAsem(){
 		log.debug("getAllAsem() entry");
 		Criteria c = sessionFactory.getCurrentSession().createCriteria(AssessmentObj.class);
+		return c.list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<AssessmentObj> getOneAsem(long lab_sessionID){
+		log.debug("getOneAsem() entry");
+		Session ses = sessionFactory.getCurrentSession();
+		Criteria c = ses.createCriteria(AssessmentObj.class);
+		c.add(Restrictions.eq("lab_sessionID", lab_sessionID));
 		return c.list();
 	}
 	

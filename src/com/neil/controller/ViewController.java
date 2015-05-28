@@ -3,6 +3,7 @@ package com.neil.controller;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -326,9 +327,11 @@ public class ViewController {
 				if (StringUtils.containsIgnoreCase(columnName, "professor"))
 					lso.setProfessor_username(value);
 				else if (StringUtils.containsIgnoreCase(columnName, "week"))
-					lso.setWeek_number(value);
+					lso.setWeek_number(Integer.valueOf(value));
 				else
 					value = "Sorry, you cannot edit it!";
+				
+				labSessionDao.saveLabSession(lso);
 			res.getWriter().print(value);
 		}
 	}
@@ -354,12 +357,31 @@ public class ViewController {
 			@RequestParam(required = false) String group,
 			@RequestParam(required = false) String week_number) throws IOException {
 
-		LabSessionObj lso = new LabSessionObj();
-		LabGroupObj lgo = labGroupDao.getLabGroupByCG(course, group);
-		lso.setGroupID(lgo.getId());
-		lso.setProfessor_username(professor_username);
-		lso.setWeek_number(week_number);
-		labSessionDao.saveLabSession(lso);
+		
+		String[] week_numbers = week_number.split(",");
+		ArrayList<Integer> weeks = new ArrayList<Integer>();
+		for(String week_numbers_sub : week_numbers){
+			if(StringUtils.contains(week_numbers_sub, "-")){
+				String[] week_start_end = week_numbers_sub.split("-");
+				if(week_start_end.length==2){
+					for(int n=Integer.valueOf(week_start_end[0]);n<=Integer.valueOf(week_start_end[1]);n++){
+						weeks.add(n);
+					}
+				}
+			}
+			else{
+				weeks.add(Integer.valueOf(week_numbers_sub));
+			}
+		}
+		for(Integer week:weeks){
+			LabSessionObj lso = new LabSessionObj();
+			LabGroupObj lgo = labGroupDao.getLabGroupByCG(course, group);
+			lso.setGroupID(lgo.getId());
+			lso.setProfessor_username(professor_username);
+			lso.setWeek_number(week);
+			labSessionDao.saveLabSession(lso);
+		}
+		
 
 		res.getWriter().print("ok");
 	}

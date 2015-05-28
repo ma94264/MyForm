@@ -30,7 +30,7 @@ public class LabSessionObj implements Serializable{
 	@Column(name = "groupID")
 	private long groupID;
 	@Column(name = "week_number")
-	private String week_number;
+	private int week_number;
 	@Transient
 	private LabGroupObj lgo;
 	
@@ -52,10 +52,10 @@ public class LabSessionObj implements Serializable{
 	public void setGroupID(long groupID) {
 		this.groupID = groupID;
 	}
-	public String getWeek_number() {
+	public int getWeek_number() {
 		return week_number;
 	}
-	public void setWeek_number(String week_number) {
+	public void setWeek_number(int week_number) {
 		this.week_number = week_number;
 	}
 	public String getProfessor_username() {

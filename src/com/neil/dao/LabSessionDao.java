@@ -7,6 +7,7 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,6 +39,15 @@ private static final Log log = LogFactory.getLog(LabSessionDao.class);
 		log.debug("getLabSession() entry");
 		Session ses = sessionFactory.getCurrentSession();
 		return (LabSessionObj) ses.get(LabSessionObj.class, id);
+	}
+	
+	public LabSessionObj getLabSessionByGWP(long groupID, int week_number, String professor_username) {
+		log.debug("getLabSessionByGWP() entry");
+		Criteria c = sessionFactory.getCurrentSession().createCriteria(LabSessionObj.class);
+		c.add(Restrictions.eq("groupID", groupID));
+		c.add(Restrictions.eq("week_number", week_number));
+		c.add(Restrictions.eq("professor_username", professor_username));
+		return (LabSessionObj) c.list().get(0);
 	}
 	
 	public void saveLabSession(LabSessionObj obj) {
