@@ -11,27 +11,19 @@
 	<global-method-security pre-post-annotations="enabled" />
 
 	<http>
-		<intercept-url pattern="/home**" access="hasRole('STUDENT')" />
-		<intercept-url pattern="/tables**" access="hasRole('STUDENT')" />
+		<intercept-url pattern="/home**" access="hasRole('ADMIN')" />
+		<intercept-url pattern="/tables**" access="hasRole('ADMIN')" />
 		<form-login login-page='/login.neil' default-target-url="/home.neil"
 			always-use-default-target='true' />
 		<csrf disabled="true" />
 		<logout />
 	</http>
 
-	<beans:bean id="customAuthenticationProvider"
-		class="com.neil.spring.CustomAuthenticationProvider">
-	</beans:bean>
 	<authentication-manager>
 		<authentication-provider>
-			<jdbc-user-service data-source-ref="dataSource"
-				authorities-by-username-query="select username,ROLE from user_roles where username=?"
-				users-by-username-query="select username,password,enabled from users where username=?" />
+			<user-service>
+				<user name="junma" password="junma" authorities="ROLE_ADMIN" />
+			</user-service>
 		</authentication-provider>
-		<authentication-provider ref="customAuthenticationProvider" />
 	</authentication-manager>
-	<!-- <authentication-manager> <authentication-provider> <user-service> <user 
-		name="jimi" password="jimispassword" authorities="ROLE_USER, ROLE_ADMIN" 
-		/> <user name="bob" password="bobspassword" authorities="ROLE_USER" /> </user-service> 
-		</authentication-provider> </authentication-manager> -->
 </beans:beans>

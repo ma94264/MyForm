@@ -2,9 +2,11 @@
 <!DOCTYPE tiles-definitions PUBLIC
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
-
+	
 <tiles-definitions>
-	
-	<definition name="standardLayout" template="/WEB-INF/layouts/standard.jsp" />
-	
+
+		<definition name="form/*" extends="standardLayout">
+		<put-attribute name="body" value="/WEB-INF/flows/form/{1}.jsp" />
+	</definition>
+
 </tiles-definitions>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+	<!-- <var name="studentList" class="java.util.ArrayList"/> -->
+	<var name="participantObj" class="com.neil.object.ParticipantObj"/>
+	
+	<view-state id="content" view="form/content" model="participantObj">
+	<transition on="save" to="saveParticipant" />
+	</view-state>
+	
+	<action-state id="saveParticipant">
+		<evaluate expression="ParticipantDao.saveParticipant(participantObj)"/>
+		<transition to="content" />
+	</action-state>
+</flow>
