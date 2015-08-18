@@ -1,26 +1,3 @@
-<%-- <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<html>
-<head><title>Login Page</title></head>
-<body onload='document.f.username.focus();'>
-<h3>Login with Username and Password</h3>
-<c:if test="${param.error != null}"> 
-	<p>Invalid username / password</p>
-</c:if>
-<c:url var="loginUrl" value="/login"/> 
-<form action="${loginUrl}" method="post">
-	<p><label for="username">User:</label></p>
-	<input type="text" id="username" name="username"/> 
-
-	<p><label for="password">Password:</label></p>
-	<input type="password" id="password" name="password"> 
-
-	<div>
-		<input name="submit" type="submit"/>
-	</div>
-</form>
-</body>
-</html> --%>
-
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html lang="en" hola_ext_inject="ready">
@@ -75,8 +52,7 @@
 					Remember me
 				</label>
 			</div>
-			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign
-				in</button>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">下载客户列表</button>
 
 		</form>
 

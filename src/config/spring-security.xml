@@ -11,9 +11,8 @@
 	<global-method-security pre-post-annotations="enabled" />
 
 	<http>
-		<intercept-url pattern="/home**" access="hasRole('ADMIN')" />
-		<intercept-url pattern="/tables**" access="hasRole('ADMIN')" />
-		<form-login login-page='/login.neil' default-target-url="/home.neil"
+		<intercept-url pattern="/report.neil" access="hasRole('ADMIN')" />
+		<form-login login-page='/login.neil' default-target-url="/report.neil"
 			always-use-default-target='true' />
 		<csrf disabled="true" />
 		<logout />

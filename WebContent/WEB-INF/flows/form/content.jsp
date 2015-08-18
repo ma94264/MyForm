@@ -27,78 +27,27 @@ function submitForm() {
 </head>
 <div class="main-content">
 <section id="container">
-	<h2>Hongkiat Stylish Form Elements</h2>
-	<sf:form class="form-validation" modelAttribute="participantObj" name="hongkiat" id="hongkiat-form">
+	<h2>骏马汽车团购会</h2>
+	<sf:form class="form-validation" modelAttribute="participantObj" name="hongkiat" id="hongkiat-form" method="post"  accept-charset="utf-8">
 		
 		<div id="wrapping" class="clearfix">
 			<section id="aligned">
-			<input type="text" name="name" id="name" placeholder="Your name" autocomplete="off" tabindex="1" class="txtinput">
-		
-			<input type="email" name="email" id="email" placeholder="Your e-mail address" autocomplete="off" tabindex="2" class="txtinput">
-		
-			<input type="url" name="website" id="website" placeholder="Website URL" autocomplete="off" tabindex="3" class="txtinput">
-		
-			<input type="tel" name="telephone" id="telephone" placeholder="Phone number?(optional)" tabindex="4" class="txtinput">
-		
-			<textarea name="message" id="message" placeholder="Enter a cool message..." tabindex="5" class="txtblock"></textarea>
+			<sf:input path="name" type="text" name="name" id="name" placeholder="您的姓名" autocomplete="off" tabindex="1" class="txtinput" />
+			<sf:input path="contact" type="tel" name="telephone" id="telephone" placeholder="手机号码" tabindex="4" class="txtinput" />
+			<sf:select  path="car" id="recipient" name="recipient" tabindex="6" class="selmenu">
+					<sf:option value="0">请选择意向车型</sf:option>
+					<sf:option value="哈弗 H1">哈弗 H1</sf:option>
+					<sf:option value="哈弗 H2">哈弗 H2</sf:option>
+					<sf:option value="哈弗 H3">哈弗 H3</sf:option>
+			</sf:select>
 			</section>
 		</div>
 
 
 		<section id="buttons">
-			<input type="reset" name="reset" id="resetbtn" class="resetbtn" value="Reset">
-			<input type="submit" name="submit" id="submitbtn" class="submitbtn" tabindex="7" value="Submit this!">
+			<input type="submit" name="_eventId_save" id="submitbtn" class="submitbtn" tabindex="7" value="提交表格">
 			<br style="clear:both;">
 		</section>
-		
-		
-		<div class="form-title-row">
-			<h1>骏马汽车团购会</h1>
-		</div>
-
-		<div class="form-row name">
-
-			<label> <span>Full name</span> <sf:input path="name"
-					maxlength="10" size="12" />
-			</label>
-
-			<!--
-                    Add these three elements to every form row. They will be shown by the
-                    .form-valid-data and .form-invalid-data classes (see the JS for an example).
-                -->
-
-			<span class="form-valid-data-sign"><i class="fa fa-check"></i></span>
-
-			<span class="form-invalid-data-sign"><i class="fa fa-close"></i></span>
-			<span class="form-invalid-data-info"></span>
-
-		</div>
-
-		<div class="form-row contact">
-
-			<label> <span>Contact</span> <sf:input path="contact"
-					maxlength="10" size="12" />
-			</label> <span class="form-valid-data-sign"><i class="fa fa-check"></i></span>
-
-			<span class="form-invalid-data-sign"><i class="fa fa-close"></i></span>
-			<span class="form-invalid-data-info"></span>
-
-		</div>
-
-		<div class="form-row">
-
-			<label> <span>Car</span> <sf:select path="car">
-					<sf:option value="0">0</sf:option>
-					<sf:option value="1">1</sf:option>
-					<sf:option value="2">2</sf:option>
-				</sf:select>
-			</label>
-
-		</div>
-
-		<div class="form-row">
-			<input type="submit" name="_eventId_save" value="Submit" />
-		</div>
 
 		<input type="hidden" name="_flowExecutionKey"
 			value="${flowExecutionKey}" />

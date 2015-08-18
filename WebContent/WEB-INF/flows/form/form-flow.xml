@@ -11,6 +11,8 @@
 	
 	<action-state id="saveParticipant">
 		<evaluate expression="ParticipantDao.saveParticipant(participantObj)"/>
-		<transition to="content" />
+		<transition to="thank" />
 	</action-state>
+	
+	<view-state id="thank" view="form/thank" model="participantObj" />
 </flow>
