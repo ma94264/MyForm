@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html lang="en" hola_ext_inject="ready">
 <head>
 <meta charset="utf-8">
@@ -47,12 +48,7 @@
 				for="inputPassword" class="sr-only">Password</label> <input
 				type="password" name="password" id="inputPassword"
 				class="form-control" placeholder="password" required="">
-			<div class="checkbox">
-				<label> <input type="checkbox" value="remember-me">
-					Remember me
-				</label>
-			</div>
-			<button class="btn btn-lg btn-primary btn-block" type="submit">下载客户列表</button>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">涓嬭浇瀹㈡埛鍒楄〃</button>
 
 		</form>
 

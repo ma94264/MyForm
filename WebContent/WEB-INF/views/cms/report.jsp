@@ -1,11 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="java.io.OutputStream,com.ibm.icu.text.SimpleDateFormat,com.ibm.icu.text.DecimalFormat,com.neil.object.ParticipantObj,org.apache.poi.ss.usermodel.CellStyle,java.util.Date,java.util.ArrayList,java.util.Map,java.util.Set,java.util.LinkedHashMap,org.apache.poi.ss.usermodel.Cell,org.apache.poi.ss.usermodel.Row,org.apache.poi.xssf.usermodel.XSSFSheet,org.apache.poi.xssf.usermodel.XSSFWorkbook"%><%		
 		ArrayList<ParticipantObj> pList= (ArrayList<ParticipantObj>)request.getAttribute("pList");
 		XSSFWorkbook workbook = new XSSFWorkbook(); 
-        XSSFSheet sheet = workbook.createSheet("骏马长城团购表格");
+        XSSFSheet sheet = workbook.createSheet("楠忛┈闀垮煄鍥㈣喘琛ㄦ牸");
           
         //This data needs to be written (Object[])
         Map<String, Object[]> data = new LinkedHashMap<String, Object[]>();
-        data.put("1", new Object[] {"姓名", "手机","意向车型", "创建时间"});
+        data.put("1", new Object[] {"濮撳悕", "鎵嬫満","鎰忓悜杞﹀瀷", "鍒涘缓鏃堕棿"});
         int n=2;
         for(ParticipantObj p:pList){
         	data.put(""+n, new Object[] {p.getName(),p.getContact(),p.getCar(),p.getCreate_date()});
@@ -32,7 +33,7 @@
                 else if(obj instanceof Long)
                     cell.setCellValue((Long)obj);
                 else if(obj instanceof Date){
-                	short df = workbook.createDataFormat().getFormat("dd-mmm-yyyy");
+                	short df = workbook.createDataFormat().getFormat("yyyy-MM-dd hh:mm:ss");
                 	CellStyle dateCellStyle = workbook.createCellStyle();
                 	dateCellStyle.setDataFormat(df);
                     cell.setCellStyle(dateCellStyle);
