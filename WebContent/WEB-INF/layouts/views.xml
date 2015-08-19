@@ -4,7 +4,5 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-	
 	<definition name="standardLayout" template="/WEB-INF/layouts/standard.jsp" />
-	
 </tiles-definitions>

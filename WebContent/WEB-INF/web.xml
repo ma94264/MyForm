@@ -5,7 +5,7 @@
 	id="WebApp_ID" version="2.4">
 	<display-name>骏马汽车</display-name>
 	<welcome-file-list>
-		<welcome-file>home.neil</welcome-file>
+		<welcome-file>form.neil</welcome-file>
 	</welcome-file-list>
 	<servlet>
 		<servlet-name>springServlet</servlet-name>

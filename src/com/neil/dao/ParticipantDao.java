@@ -24,7 +24,7 @@ private static final Log log = LogFactory.getLog(ParticipantDao.class);
 	
 	@SuppressWarnings("unchecked")
 	public List<ParticipantObj> getAllParticipants(){
-		log.debug("getAllStudents() entry");
+		log.debug("getAllParticipants() entry");
 		Criteria c = sessionFactory.getCurrentSession().createCriteria(ParticipantObj.class);
 		return c.list();
 	}

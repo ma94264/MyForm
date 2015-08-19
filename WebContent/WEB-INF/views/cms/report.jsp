@@ -1,12 +1,6 @@
-<%@page import="com.ibm.icu.text.SimpleDateFormat"%>
-<%@page import="com.ibm.icu.text.DecimalFormat"%>
-<%@page import="com.neil.object.ParticipantObj"%>
-<%@ page import="org.apache.poi.ss.usermodel.CellStyle,java.util.Date,java.util.ArrayList,java.util.Map,java.util.Set,java.util.LinkedHashMap,org.apache.poi.ss.usermodel.Cell,org.apache.poi.ss.usermodel.Row,org.apache.poi.xssf.usermodel.XSSFSheet,org.apache.poi.xssf.usermodel.XSSFWorkbook" %>
-
-<%		
+<%@page import="java.io.OutputStream,com.ibm.icu.text.SimpleDateFormat,com.ibm.icu.text.DecimalFormat,com.neil.object.ParticipantObj,org.apache.poi.ss.usermodel.CellStyle,java.util.Date,java.util.ArrayList,java.util.Map,java.util.Set,java.util.LinkedHashMap,org.apache.poi.ss.usermodel.Cell,org.apache.poi.ss.usermodel.Row,org.apache.poi.xssf.usermodel.XSSFSheet,org.apache.poi.xssf.usermodel.XSSFWorkbook"%><%		
 		ArrayList<ParticipantObj> pList= (ArrayList<ParticipantObj>)request.getAttribute("pList");
 		XSSFWorkbook workbook = new XSSFWorkbook(); 
-         
         XSSFSheet sheet = workbook.createSheet("骏马长城团购表格");
           
         //This data needs to be written (Object[])
@@ -46,16 +40,22 @@
                 }
             }
         }
+        
+        OutputStream outp = response.getOutputStream();
         try
         {
         	response.setContentType("application/vnd.ms-excel");
         	String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-
+        	response.setCharacterEncoding("UTF-8");
         	response.setHeader("Content-Disposition", "attachment; filename=" + "report-" + date + ".xls");
-            workbook.write(response.getOutputStream());
+            workbook.write(outp);
+            outp.flush();
+            outp.close();
+            out.clear();
+        	out=pageContext.pushBody();
         } 
         catch (Exception e) 
         {
             e.printStackTrace();
-        }
+        }       
  %>
