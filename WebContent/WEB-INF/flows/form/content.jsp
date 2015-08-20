@@ -5,30 +5,36 @@
 pageEncoding="UTF-8"%>
 <head>
 
-<script type="text/javascript" class="init">
+<script type="text/javascript"> 
+function checkField(){ 
+	var name = document.hongkiat.name.value;
+	var contact = document.hongkiat.contact.value;
+    var recipient = document.hongkiat.recipient.value;
+    
+    if (name.length == 0){
+    	  alert("姓名不能为空！");
+    	  return false;
+   	}
+    
+    if(!(/^1[3|5][0-9]\d{4,8}$/.test(contact))){ 
+        alert("不是完整的11位手机号或者正确的手机号前七位"); 
+        document.hongkiat.contact.focus(); 
+        return false; 
+    } 
+    
+    if (recipient == "0"){
+  	  alert("请选择意向车型！");
+  	  return false;
+ 	}
+} 
 
-
-function submitForm() {
-    document.getElementById("hongkiat-form")._eventId_save.click();
-}
-    $(document).ready(function() {
-		
-    	var field = $('.name');
-    	if(field.value == ""){
-    		field.addClass('form-invalid-data');
-    		field.find('.form-invalid-data-info').text('请输入您的姓名');
-    	}else{
-    		field.addClass('form-valid-data');
-    	}
-    	
-    });
-
-</script>
+</script> 
 </head>
 <div class="main-content">
 <section id="container">
 	<h2>骏马汽车团购会</h2>
-	<sf:form class="form-validation" modelAttribute="participantObj" name="hongkiat" id="hongkiat-form" method="post"  accept-charset="utf-8">
+	<div style="text-align:center; margin:20px"><img src="<c:url value="/resources/img/H6.jpg" />" style="vertical-align:middle;" width="100%"></div>
+	<sf:form class="form-validation" modelAttribute="participantObj" name="hongkiat" id="hongkiat-form" method="post"  accept-charset="utf-8" onSubmit="return checkField()">
 		
 		<div id="wrapping" class="clearfix">
 			<section id="aligned">
@@ -38,7 +44,14 @@ function submitForm() {
 					<sf:option value="0">请选择意向车型</sf:option>
 					<sf:option value="哈弗 H1">哈弗 H1</sf:option>
 					<sf:option value="哈弗 H2">哈弗 H2</sf:option>
-					<sf:option value="哈弗 H3">哈弗 H3</sf:option>
+					<sf:option value="哈弗 H5">哈弗 H5</sf:option>
+					<sf:option value="哈弗 H6">哈弗 H6</sf:option>
+					<sf:option value="哈弗 H6 Coupe">哈弗 H6 Coupe</sf:option>
+					<sf:option value="哈弗 H8">哈弗 H8</sf:option>
+					<sf:option value="哈弗 H9">哈弗 H9</sf:option>
+					<sf:option value="长城 M4">长城 M4</sf:option>
+					<sf:option value="长城 C50">长城 C50</sf:option>
+					
 			</sf:select>
 			</section>
 		</div>
