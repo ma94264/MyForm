@@ -16,7 +16,7 @@ function checkField(){
     	  return false;
    	}
     
-    if(!(/^1[3|5][0-9]\d{4,8}$/.test(contact))){ 
+    if(!(/^1[3|5｜7｜8][0-9]\d{4,8}$/.test(contact))){ 
         alert("不是完整的11位手机号或者正确的手机号前七位"); 
         document.hongkiat.contact.focus(); 
         return false; 
